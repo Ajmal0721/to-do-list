@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        h1, h2 {
+            color: #004d40;
+        }
+        
+        form {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            max-width: 600px;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        th, td {
+            padding: 12px;
+            border: 1px solid #dddddd;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #b2dfdb;
+        }
+        
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+        
+        input[type="submit"] {
+            background-color: #00796b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #004d40;
+        }
+        
+        .link1, .link2 {
+            text-decoration: none;
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin: 0 5px;
+            display: inline-block;
+        }
+        
+        .link1 {
+            background-color: #00796b;
+        }
+        
+        .link2 {
+            background-color: #d32f2f;
+        }
+        
+        .link1:hover {
+            background-color: #004d40;
+        }
+        
+        .link2:hover {
+            background-color: #b71c1c;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #e0f2f1;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Add To Your Team</h2>
+
+    <form action="/insertTeam" method="post">
+        <table>
+            <tr>
+                <th>srNo :</th>
+                <td><input type="number" name="teamId"></td>
+            </tr>
+            <tr>
+                <th>Team task:</th>
+                <td><input type="text" name="team"></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><input type="submit" value="Add"></td>
+            </tr>
+        </table>
+    </form>
+
+    <center>
+        <h1>Here's Your Football team</h1>
+
+        <table>
+            <tr>
+                <th>srNo</th>
+                <th>team Task</th>
+                <th>Action</th>
+            </tr>
+
+            <%list.map((val)=> { %>
+                <tr>
+                    <td>
+                        <%= val.srNo %>
+                    </td>
+                    <td>
+                        <%= val.team%>
+                    </td>
+                    <td>
+                        <a href="/editTeam?srNo=<%= val.srNo %>" class="link1">Edit</a>
+                        <a href="/deleteTeam?srNo=<%= val.srNo %>" class="link2">Delete</a>
+                    </td>
+                </tr>
+                <% }) %>
+        </table>
+    </center>
+
+</body>
+
+</html>
